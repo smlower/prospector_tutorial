@@ -9,5 +9,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=3900mb
 #SBATCH --qos=narayanan
+#SBATCH --array=0-100
 
-python run_prosp.py
+
+python run_prosp.py {$SLURM_ARRAY_TASK_ID}
