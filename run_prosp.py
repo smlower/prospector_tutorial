@@ -73,7 +73,7 @@ model_params.append({'name': "mass", 'N': 3, 'isfree': False, 'init': 1., 'depen
 model_params.append({'name': "agebins", 'N': 1, 'isfree': False,'init': []})
 model_params.append({'name': "z_fraction", "N": 2, 'isfree': True, 'init': [0, 0],'prior': priors.Beta(alpha=1.0, beta=1.0, mini=0.0, maxi=1.0)})
 #Dust attenuation                                                                                                                                            
-model_params.append({'name': 'dust_type', 'N': 1,'isfree': False,'init': 5,'prior': None})
+model_params.append({'name': 'dust_type', 'N': 1,'isfree': False,'init': 4,'prior': None})
 model_params.append({'name': 'dust2', 'N': 1,'isfree': True, 'init': 0.1,'prior': priors.ClippedNormal(mini=0.0, maxi=2.0, mean=0.0, sigma=0.3)})
 model_params.append({'name': 'dust_index', 'N': 1,'isfree': True,'init': -0.5, 'prior': priors.Uniform(mini=-1.8, maxi=0.3)})
 #Dust Emission                                                                                                                                             
@@ -224,14 +224,14 @@ run_params = {'verbose':False,
 
 if __name__ == '__main__':
 
-    galaxy_idx = sys.argv[1]
+    galaxy = sys.argv[1]
     print('Fitting galaxy ',str(galaxy))
-    obs, model, sps, noise = build_all(galaxy=galaxy, **run_params)
+    obs, model, sps = build_all(galaxy=galaxy, **run_params)
     run_params["sps_libraries"] = sps.ssp.libraries
     run_params["param_file"] = __file__
-    hfile = f'galaxy_{galaxy_idx}.h5'
+    hfile = f'galaxy_{galaxy}.h5'
     print('Running fits')
-    output = fit_model(obs, model, sps, noise, **run_params)
+    output = fit_model(obs, model, sps, [None,None],**run_params)
     print('Done. Writing now')
     writer.write_hdf5(hfile, run_params, model, obs,
               output["sampling"][0], output["optimization"][0],
