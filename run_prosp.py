@@ -110,7 +110,7 @@ def build_model(**kwargs):
     alpha = np.repeat(alpha_sfh,nbins-1)
     tilde_alpha = np.array([alpha[i-1:].sum() for i in range(1,ncomp)])
     zinit = np.array([(i-1)/float(i) for i in range(ncomp, 1, -1)])
-    zprior = priors.Beta(alpha=tilde_alpha, beta=np.ones_like(alpha), mini=0.0, maxi=1.0)
+    zprior = priors.Beta(alpha=tilde_alpha, beta=alpha, mini=0.0, maxi=1.0)
 
     model_params[n.index('mass')]['N'] = ncomp
     model_params[n.index('agebins')]['N'] = ncomp
