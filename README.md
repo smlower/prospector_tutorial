@@ -24,3 +24,13 @@ And then pip install python-fsps
 
 4. Prospector : prospector is the tool that combines the above packages to model the SEDs of galaxies. You can find it here: https://github.com/bd-j/prospector It also has a pretty decent demo on how to use prospector: https://github.com/bd-j/prospector/blob/main/demo/InteractiveDemo.ipynb
 For visualization purposes, we'll also want to install 2 packages: corner, which helps us plot corner plots (https://github.com/dfm/corner.py) and arviz, which allows us to do 'advanced' things with corner (conda install arviz)
+
+
+
+
+What's in this repo:
+
+1. Tutorial Notebook, allows you to get started with Prospector; explains the different model components, how to process Powderday SEDs, and basic analysis steps to understand results.
+2. Prospector runtime scripts that take the contents from the tutorial notebook and package them as a python script; two SFH models.
+3. Script for processing prospector output, calculates posterior distributions for stellar and dust mass, SFR, metallicity, and the model SEDs. 
+4. In the "prospector_nonpara_SHFs" directory, scripts for the two other nonparametric models as well as their respective output processing scripts. These files are not tailor made for this tutorial but are useful jumping off points from which you can copy/paste the model setup for your own use (one useful thing is that these scripts were used to model z=7 simba galaxies so you can see how to set up z>0 runs since the tailor made scripts just use a z=0 galaxy).
