@@ -133,7 +133,7 @@ def build_obs(pd_dir, **kwargs):
     wav = wav.to(u.AA)
     lum = np.asarray(lum)*u.erg/u.s
     dl = (10*u.pc).to(u.cm) #setting luminosity distance to 10pc since we're at z=0
-    flux = lum/(4.*3.14*dl**2.)
+    flux = lum/(4.*3.14*dl**2.) #*(1+z) this is where you would scale the flux density by 1+z
     nu = constants.c.cgs/(wav.to(u.cm))
     nu = nu.to(u.Hz)
     flux /= nu

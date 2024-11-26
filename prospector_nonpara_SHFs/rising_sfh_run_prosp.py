@@ -124,6 +124,7 @@ def build_obs(pd_dir,**kwargs):
     flux = np.asarray(flux)*u.erg/u.s
     dl = cosmo.luminosity_distance(7.2).to('cm')
     flux /= (4.*3.14*dl**2.)
+    flux *= (1+7.2)
     nu = constants.c.cgs/(wav.to(u.cm))
     nu = nu.to(u.Hz)
     flux /= nu
